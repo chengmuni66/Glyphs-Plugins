@@ -14,7 +14,7 @@
 		<string>https://github.com/schriftgestalt/Glyphs-Plugins.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Trace Image/TraceImage.xcodeproj</string>
+	<string>TraceImage/TraceImage.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A07DF04E51DBCF95B5A23CC66CB0B621019BD505</key>
