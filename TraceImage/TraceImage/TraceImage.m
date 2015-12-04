@@ -134,9 +134,12 @@
 
 				}
 				[[NSFileManager defaultManager] removeItemAtPath:TempSaveString error:nil];
+				[_nodeCountField setStringValue:@""];
 				if ([Result length] > 10) {
 					@try {
 						NSArray *PathArray = [Result propertyList];
+						NSUInteger nodeCount = 0;
+						NSUInteger pathCount = 0;
 						if ([PathArray count] > 0) {
 							NSMutableArray *Paths = [NSMutableArray array];
 							NSAffineTransform *Transform = [NSAffineTransform transform];
@@ -146,7 +149,9 @@
 								GSPath *Path = [[GSPath alloc] initWithPathDict:PathDict];
 								[Path cleanUp];
 								if (Path && [Path.nodes count] > 1) {
+									pathCount++;
 									for (GSNode *Node in Path.nodes) {
+										nodeCount++;
 										Node.position = [Transform transformPoint:Node.position];
 									}
 									[Paths addObject:Path];
@@ -156,9 +161,14 @@
 								[Layer setPaths:Paths];
 							}
 						}
+						[_nodeCountField setAlignment:NSCenterTextAlignment];
+						[_nodeCountField setStringValue:[NSString stringWithFormat:@"%ld path with %ld nodes", pathCount, nodeCount]];
+						
 					}
 					@catch (NSException *exception) {
 						UKLog(@"Something went wrong: %@", Result);
+						[_nodeCountField setAlignment:NSLeftTextAlignment];
+						[_nodeCountField setStringValue:[NSString stringWithFormat:@"Something went wrong: %@", Result]];
 					}
 				}
 			}

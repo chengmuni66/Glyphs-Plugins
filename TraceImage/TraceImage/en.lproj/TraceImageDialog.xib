@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TraceImage">
             <connections>
                 <outlet property="_view" destination="1" id="16"/>
+                <outlet property="nodeCountField" destination="EZG-L9-32A" id="jDn-0X-14S"/>
                 <outlet property="tabview" destination="102" id="keB-c1-PMQ"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="302" height="198"/>
+            <rect key="frame" x="0.0" y="0.0" width="302" height="234"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <tabView horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="102">
-                    <rect key="frame" x="-1" y="-4" width="304" height="214"/>
+                    <rect key="frame" x="-1" y="20" width="304" height="214"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="Potrace" identifier="potrace" id="104" userLabel="potrace">
                             <view key="view" verticalHuggingPriority="750" id="105">
-                                <rect key="frame" x="10" y="33" width="284" height="168"/>
+                                <rect key="frame" x="10" y="33" width="284" height="154"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="26">
-                                        <rect key="frame" x="141" y="140" width="65" height="17"/>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="26">
+                                        <rect key="frame" x="141" y="126" width="65" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Threshold" id="27">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -38,8 +39,8 @@
                                             </allowedInputSourceLocales>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7" customClass="GSSteppingTextField">
-                                        <rect key="frame" x="212" y="138" width="52" height="22"/>
+                                    <textField verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7" customClass="GSSteppingTextField">
+                                        <rect key="frame" x="212" y="124" width="52" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="52" id="Ixt-gb-0OJ"/>
                                         </constraints>
@@ -74,8 +75,8 @@
                                             <binding destination="55" name="value" keyPath="values.com.schriftgestaltung.Trace.Threshold" id="76"/>
                                         </connections>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60">
-                                        <rect key="frame" x="18" y="108" width="188" height="17"/>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="60">
+                                        <rect key="frame" x="18" y="94" width="188" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Size of smalles element" id="61">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -85,8 +86,40 @@
                                             </allowedInputSourceLocales>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="59" customClass="GSSteppingTextField">
-                                        <rect key="frame" x="212" y="106" width="52" height="22"/>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="70">
+                                        <rect key="frame" x="132" y="62" width="74" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Roundness" id="71">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="13">
+                                        <rect key="frame" x="102" y="36" width="124" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Optimize Curves" bezelStyle="regularSquare" imagePosition="right" alignment="right" state="on" inset="2" id="14">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="55" name="value" keyPath="values.com.schriftgestaltung.Trace.OptimizeCurves" id="79"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="65">
+                                        <rect key="frame" x="61" y="10" width="145" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Optimization Tolerance" id="66">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="59" customClass="GSSteppingTextField">
+                                        <rect key="frame" x="212" y="92" width="52" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="52" id="9b2-CL-dNO"/>
                                         </constraints>
@@ -121,19 +154,8 @@
                                             <binding destination="55" name="value" keyPath="values.com.schriftgestaltung.Trace.MinElementSize" id="77"/>
                                         </connections>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70">
-                                        <rect key="frame" x="132" y="76" width="74" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Roundness" id="71">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <allowedInputSourceLocales>
-                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                            </allowedInputSourceLocales>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69" customClass="GSSteppingTextField">
-                                        <rect key="frame" x="212" y="74" width="52" height="22"/>
+                                    <textField verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="69" customClass="GSSteppingTextField">
+                                        <rect key="frame" x="212" y="60" width="52" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="52" id="aiQ-N3-wQA"/>
                                         </constraints>
@@ -169,29 +191,8 @@
                                             <binding destination="55" name="value" keyPath="values.com.schriftgestaltung.Trace.Roundness" id="78"/>
                                         </connections>
                                     </textField>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13">
-                                        <rect key="frame" x="102" y="50" width="124" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Optimize Curves" bezelStyle="regularSquare" imagePosition="right" alignment="right" state="on" inset="2" id="14">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="55" name="value" keyPath="values.com.schriftgestaltung.Trace.OptimizeCurves" id="79"/>
-                                        </connections>
-                                    </button>
-                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65">
-                                        <rect key="frame" x="61" y="24" width="145" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Optimization Tolerance" id="66">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <allowedInputSourceLocales>
-                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                            </allowedInputSourceLocales>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64" customClass="GSSteppingTextField">
-                                        <rect key="frame" x="212" y="22" width="52" height="22"/>
+                                    <textField verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="64" customClass="GSSteppingTextField">
+                                        <rect key="frame" x="212" y="8" width="52" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="52" id="W2n-zE-dww"/>
                                         </constraints>
@@ -518,14 +519,25 @@ Default is no despeckling</string>
                         <outlet property="delegate" destination="-2" id="UOZ-qY-yjq"/>
                     </connections>
                 </tabView>
+                <textField horizontalHuggingPriority="151" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EZG-L9-32A">
+                    <rect key="frame" x="18" y="8" width="33" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="lrU-1L-roO">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="EZG-L9-32A" secondAttribute="bottom" constant="8" id="Aja-VZ-aF6"/>
                 <constraint firstAttribute="trailing" secondItem="102" secondAttribute="trailing" constant="6" id="ILw-4U-12v"/>
-                <constraint firstAttribute="bottom" secondItem="102" secondAttribute="bottom" constant="6" id="ntw-mE-yTz"/>
+                <constraint firstItem="EZG-L9-32A" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="J5g-33-dZd"/>
+                <constraint firstItem="EZG-L9-32A" firstAttribute="top" secondItem="102" secondAttribute="bottom" constant="8" symbolic="YES" id="e9D-kT-iHe"/>
+                <constraint firstAttribute="trailing" secondItem="EZG-L9-32A" secondAttribute="trailing" constant="20" symbolic="YES" id="fX7-QX-CqM"/>
                 <constraint firstItem="102" firstAttribute="top" secondItem="1" secondAttribute="top" constant="6" id="pcD-ap-A7K"/>
                 <constraint firstItem="102" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="6" id="xCy-Mv-QOs"/>
             </constraints>
-            <point key="canvasLocation" x="635" y="406"/>
+            <point key="canvasLocation" x="284" y="309"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="55"/>
     </objects>

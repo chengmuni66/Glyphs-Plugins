@@ -17,5 +17,6 @@
 }
 
 @property (nonatomic, assign) IBOutlet NSTabView *tabview;
+@property (nonatomic, assign) IBOutlet NSTextField *nodeCountField;
 
 @end
