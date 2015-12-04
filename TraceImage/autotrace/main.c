@@ -299,7 +299,7 @@ static char *read_command_line(int argc, char *argv[], at_fitting_opts_type *fit
 			else
 				str = "big";
 
-			printf("%d bit, %s endian\n", sizeof(void *) * 8, str);
+			printf("%lu bit, %s endian\n", sizeof(void *) * 8, str);
 			exit(0);
 		}
 

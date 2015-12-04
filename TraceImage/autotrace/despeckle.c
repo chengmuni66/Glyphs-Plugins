@@ -662,7 +662,7 @@ despeckle_iteration (/* in */     int    level,
   int    x, y;
   int    i;
   int    current_size;
-  int    tightness;
+  int    tightness = 0;
 
   for (i = 0, current_size = 1; i < level; i++, current_size *= 2)
     tightness = (int) (256 / (1.0 + adaptive_tightness * level));
@@ -720,7 +720,7 @@ despeckle_iteration_8 (/* in */   int    level,
   int    x, y;
   int    i;
   int    current_size;
-  int    tightness;
+  int    tightness = 0;
 
   for (i = 0, current_size = 1; i < level; i++, current_size *= 2)
   tightness = (int) (256 / (1.0 + adaptive_tightness * level));
