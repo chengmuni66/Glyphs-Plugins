@@ -16,7 +16,7 @@ GlyphsReporter = objc.protocolNamed('GlyphsReporter')
 class GlyphsExpandPathsPreviewTool (NSObject, GlyphsReporter):
 	def init(self):
 		self.controller = None
-		self.offsetCurvePlugin = None
+		self.offsetCurvePluginClass = None
 		return self
 	
 	def title(self):
@@ -30,31 +30,36 @@ class GlyphsExpandPathsPreviewTool (NSObject, GlyphsReporter):
 		return "x"
 		
 	def drawBackgroundForLayer_(self, Layer):
-		if self.offsetCurvePlugin is None:
+		if self.offsetCurvePluginClass is None:
 			try:
-				self.offsetCurvePlugin = objc.lookUpClass("GlyphsFilterOffsetCurve").alloc().init()
+				self.offsetCurvePluginClass = objc.lookUpClass("GlyphsFilterOffsetCurve")
 			except:
 				print "__ can't find Offset Curve Filter"
 				return
 		Font = Layer.parent.parent
-		FontMaster = Font.fontMasterForId_(Layer.associatedMasterId) 
-		if FontMaster is not None and FontMaster.userData.className() == "__NSCFDictionary" :
-			if FontMaster.userData.has_key("GSOffsetHorizontal"):
-				OffsetX = FontMaster.userData["GSOffsetHorizontal"].floatValue()
-				OffsetY = FontMaster.userData["GSOffsetVertical"].floatValue()
-				MakeStroke = False
-				if FontMaster.userData.has_key("GSOffsetMakeStroke"):
-					MakeStroke = FontMaster.userData["GSOffsetMakeStroke"].boolValue()
-				Position = 0.5
-				if FontMaster.userData.has_key("GSOffsetPosition"):
-					Position = FontMaster.userData["GSOffsetPosition"].floatValue()
-				CopyLayer = Layer.copy()
-				CopyLayer.addInflectionPoints()
-				self.offsetCurvePlugin.offsetLayer_offsetX_offsetY_makeStroke_position_error_shadow_(CopyLayer, OffsetX, OffsetY, MakeStroke, Position, None, None)
-				Path = CopyLayer.bezierPath()
-				NSColor.grayColor().set()
-				if Path != None:
-					Path.fill()
+		FontMaster = Font.fontMasterForId_(Layer.associatedMasterId)
+		OffsetX = False
+		OffsetY = False
+		try:
+			OffsetX = FontMaster.userData["GSOffsetHorizontal"].floatValue()
+			OffsetY = FontMaster.userData["GSOffsetVertical"].floatValue()
+			MakeStroke = False
+			if "GSOffsetMakeStroke" in FontMaster.userData:
+				MakeStroke = FontMaster.userData["GSOffsetMakeStroke"].boolValue()
+			Position = 0.5
+			if "GSOffsetPosition" in FontMaster.userData:
+				Position = FontMaster.userData["GSOffsetPosition"].floatValue()
+			CopyLayer = Layer.copy()
+			CopyLayer.addInflectionPoints()
+			try:
+				self.offsetCurvePluginClass.offsetLayer_offsetX_offsetY_makeStroke_position_error_shadow_(CopyLayer, OffsetX, OffsetY, MakeStroke, Position, None, None)
+			except: # new API in 2.5
+				self.offsetCurvePluginClass.makeStroke_offsetX_offsetY_error_(CopyLayer, OffsetX, OffsetY, None)
+			Path = CopyLayer.bezierPath
+			NSColor.grayColor().set()
+			if Path != None:
+				Path.fill()
+		
 	
 	def drawForgroundForLayer_(self, Layer):
 		pass
