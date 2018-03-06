@@ -54,13 +54,15 @@ class GlyphsExpandPathsPreviewTool (NSObject, GlyphsReporter):
 			try:
 				self.offsetCurvePluginClass.offsetLayer_offsetX_offsetY_makeStroke_position_error_shadow_(CopyLayer, OffsetX, OffsetY, MakeStroke, Position, None, None)
 			except: # new API in 2.5
-				self.offsetCurvePluginClass.makeStroke_offsetX_offsetY_error_(CopyLayer, OffsetX, OffsetY, None)
+				self.offsetCurvePluginClass.makeStroke_offsetX_offsetY_capStyle_(CopyLayer, OffsetX, OffsetY, 0)
 			Path = CopyLayer.bezierPath
 			NSColor.grayColor().set()
 			if Path != None:
 				Path.fill()
-		
-	
+		except Exception as e:
+			import traceback
+			print traceback.format_exc()
+
 	def drawForgroundForLayer_(self, Layer):
 		pass
 
